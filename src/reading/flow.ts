@@ -14,8 +14,8 @@ import { spatialMentions, type SpatialMention } from "./spatial.js";
 import { readHeadings, readStoryboard, type Cut } from "./storyboard.js";
 import { CATEGORY_OF, typeNames, type Decide, type Detected, type EntityType } from "./typing.js";
 import { designationForms, introSentences, introTerms, type IntroParts } from "./front.js";
-import { settledCategory, usualType } from "../world/rules/typing.js";
-import { corroborateCredits } from "../world/rules/presence.js";
+import { settledCategory, usualType } from "../rules/typing.js";
+import { corroborateCredits } from "../rules/presence.js";
 
 /**
  * The v2 reading flow (the user's sketch, 2026-10-30; docs/v3/design.html#world-engine-v2 §2):

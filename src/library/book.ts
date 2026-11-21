@@ -8,7 +8,7 @@ import { readFile } from "node:fs/promises";
 import { cutBlocks } from "../reading/text/blocks.js";
 import { sectionBlock } from "../reading/text/sectioning.js";
 import { storedSource } from "../ground/workspace/source.js";
-import { corroborateCredits } from "../world/rules/presence.js";
+import { corroborateCredits } from "../rules/presence.js";
 import { cutParts, type BookText } from "./folder.js";
 
 export interface Span { start: number; end: number }

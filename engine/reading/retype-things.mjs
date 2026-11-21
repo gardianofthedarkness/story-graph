@@ -19,7 +19,7 @@ const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..'),
 const { values, positionals: [novelDir, readingPath] } = parseArgs({ allowPositionals: true, options: { run: { type: 'boolean' }, write: { type: 'boolean' } } });
 if (!novelDir || !readingPath) { console.error('usage: node engine/reading/retype-things.mjs <novel-dir> <reading>/v2/data.json [--run] [--write]'); process.exit(2); }
 const reading = JSON.parse(await readFile(resolve(readingPath), 'utf8'));
-const { loadWorkspaceSentences } = await load('dist/src/cli/commands/extract/timeplaceCommands.js'), { typeNames, CATEGORY_OF } = await load('dist/src/reading/typing.js');
+const { loadWorkspaceSentences } = await load('dist/src/reading/text/workspaceSentences.js'), { typeNames, CATEGORY_OF } = await load('dist/src/reading/typing.js');
 const text = await loadWorkspaceSentences(resolve(novelDir));
 // The reading's scenes are its segments (one unit, 2026-11-04).
 const segmentOf = new Map(); reading.scenes.forEach((segment, n) => { for (const id of segment.sentences) segmentOf.set(id, n); });
@@ -40,7 +40,8 @@ console.log(`${things.length} weapon and vehicle slots; ${asks.size} segments to
 if (!values.run) process.exit(0);
 
 const { jevFromEnv } = await load('dist/src/ground/connectors/jev.js'), { cachedDecisions } = await load('dist/src/reading/v1/timeplace/cache.js');
-const { PICKER_MODEL } = await import('../live/sim-jev.mjs');
+// The picker's model (the one the live view's picker asks).
+const PICKER_MODEL = 'jev-1.14.0';
 const client = jevFromEnv({ ...process.env, JEV_MODEL: PICKER_MODEL }), jev = cachedDecisions(client, join(dirname(resolve(readingPath)), 'cache-things'));
 const results = [];
 for (const entry of asks.values()) {

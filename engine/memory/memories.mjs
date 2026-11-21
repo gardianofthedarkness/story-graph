@@ -12,7 +12,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { storedKeys } from '../volume/credentials.mjs';
+import { storedKeys } from '../credentials.mjs';
 import { affectOf } from './affect.mjs';
 
 const repo = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -96,7 +96,7 @@ async function main() {
   const nameOf = new Map(entities.map((e) => [e.id, e.names?.find((n) => n.kind === 'canonical')?.text ?? e.names?.[0]?.text ?? e.id]));
   const cast = entities.filter((e) => e.kind === 'Character');
   const things = entities.filter((e) => ['Item', 'Concept', 'Organization', 'Location'].includes(e.kind));
-  const { loadWorkspaceSentences } = await load('dist/src/cli/commands/extract/timeplaceCommands.js');
+  const { loadWorkspaceSentences } = await load('dist/src/reading/text/workspaceSentences.js');
   const text = await loadWorkspaceSentences(novel);
   const env = { ...process.env, ...storedKeys(process.env) };
   if (!env.WORK_LLM_API_KEY) throw new Error('No work-model key (WORK_LLM_API_KEY or the stored deepseek credential).');

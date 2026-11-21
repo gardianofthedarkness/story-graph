@@ -22,7 +22,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
-import { storedKeys } from '../volume/credentials.mjs';
+import { storedKeys } from '../credentials.mjs';
 
 const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..'), load = (path) => import(pathToFileURL(join(repository, path)).href);
 export const SAME_AT = 0.9, REVIEW_AT = 0.6, DISTINCT_BELOW = 0.5, PAIRS_PER_CALL = 8, PASSAGES = 3;
@@ -48,7 +48,7 @@ export async function bookCharacters(library, book) {
   const scenes = latest(await lines(join(novel, 'ontology', 'scenes.jsonl')));
   const paratext = new Set(existsSync(join(reading, 'paratext.json')) ? JSON.parse(await readFile(join(reading, 'paratext.json'), 'utf8')).paratext : []);
   const story = scenes.filter((s) => !paratext.has(s.id));
-  const { loadWorkspaceSentences } = await load('dist/src/cli/commands/extract/timeplaceCommands.js');
+  const { loadWorkspaceSentences } = await load('dist/src/reading/text/workspaceSentences.js');
   const text = await loadWorkspaceSentences(novel), line = (id) => text.get(id)?.text ?? '';
   const out = [];
   for (const e of entities) {

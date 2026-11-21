@@ -24,7 +24,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const { values, positionals: [novelDir, readingPath] } = parseArgs({ allowPositionals: true, options: { scenes: { type: 'string' }, out: { type: 'string' } } });
   if (!novelDir || !readingPath) { console.error('usage: node engine/reading/block-types.mjs <novel-dir> <reading>/v2/data.json [--scenes a,b] [--out file]'); process.exit(2); }
   const S = await load('dist/src/reading/v1/autostep/segmentation.js'), { kindsMode } = await load('dist/src/context/readingModes.js'), { ask } = await load('dist/src/context/engine.js');
-  const { loadWorkspaceSentences } = await load('dist/src/cli/commands/extract/timeplaceCommands.js'), { jevFromEnv } = await load('dist/src/ground/connectors/jev.js'), { cachedDecisions } = await load('dist/src/reading/v1/timeplace/cache.js');
+  const { loadWorkspaceSentences } = await load('dist/src/reading/text/workspaceSentences.js'), { jevFromEnv } = await load('dist/src/ground/connectors/jev.js'), { cachedDecisions } = await load('dist/src/reading/v1/timeplace/cache.js');
   const reading = JSON.parse(await readFile(readingPath, 'utf8')), text = await loadWorkspaceSentences(resolve(novelDir));
   const order = reading.scenes.flatMap(scene => scene.sentences), blockOf = id => `b${id.slice(1, 5)}`, sentence = id => ({ id, text: text.get(id)?.text ?? '' });
   const chosen = values.scenes ? new Set(reading.scenes.filter(scene => values.scenes.split(',').includes(scene.id)).flatMap(scene => scene.sentences)) : null;

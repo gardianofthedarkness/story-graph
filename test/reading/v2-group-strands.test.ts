@@ -7,7 +7,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { builtTree, groupStrands, placeTree, strandBeats, strandsDocument, type GroupOptions, type StrandBeats } from "../../src/reading/strands.js";
-import { forkTimeline } from "../../src/play/stage/environment.js";
+import { forkTimeline } from "../../src/reading/stage/environment.js";
 import type { ReadingScript, ScriptScene } from "../../src/reading/script.js";
 
 const places: ReadingScript["places"] = {

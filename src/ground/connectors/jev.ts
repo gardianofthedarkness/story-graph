@@ -14,7 +14,7 @@
  * summary, never raw chapter text. Pin the model version (e.g. jev-1.13.0)
  * in the novel manifest — do not float on "latest" when thresholds are tuned.
  */
-import { loadConfig } from "../../cli/config.js";
+import { loadConfig } from "../config.js";
 import { resolveJevKey } from "./secrets.js";
 
 export type DecisionPrimitive = "noul" | "choice" | "score" | "box";

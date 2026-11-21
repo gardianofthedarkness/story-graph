@@ -1,7 +1,7 @@
 import type { WorkModel } from "../../../ground/connectors/llm.js";
 import type { Entity, Relation, Scene } from "../../../ground/ontology/types.js";
-import type { StoryScene, StoryTime, TimePlaceProjection } from "../../../../apps/playground/src/data/timePlace.js";
-import { storyStrands, type StoryStrands, type StrandAnswers } from "../../../../apps/playground/src/data/storyStrands.js";
+import type { StoryScene, StoryTime, TimePlaceProjection } from "../../strands-data/timePlace.js";
+import { storyStrands, type StoryStrands, type StrandAnswers } from "../../strands-data/storyStrands.js";
 import { CAST_CANDIDATE_LIMIT, type CastCandidate } from "../processing/castCandidates.js";
 
 /**

@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { existsSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
-import { chooseSetting, holderIn, isLocative, isPartOrFloor, LANGUAGE, mayHold, nameHolds, RULES, settledCategory, sureParent, usualType } from "../../src/world/rules/index.js";
+import { chooseSetting, holderIn, isLocative, isPartOrFloor, LANGUAGE, mayHold, nameHolds, RULES, settledCategory, sureParent, usualType } from "../../src/rules/index.js";
 
 test("the code rules: one folder, a language profile, and a catalogue of every rule with where it lives", () => {
   const root = join(import.meta.dirname, "..", "..", "..");
@@ -31,7 +31,7 @@ test("the code rules: one folder, a language profile, and a catalogue of every r
 });
 
 test("a place is a scene's setting only where the scene puts someone there; a carried building stays only close in time", async () => {
-  const { deeperByUnnamed } = await import("../../src/world/rules/index.js");
+  const { deeperByUnnamed } = await import("../../src/rules/index.js");
   const tree: Record<string, string[]> = { city: ["city"], d7: ["city", "d7"], school: ["city", "d7", "school"], bar: ["city", "d7", "bar"] };
   const scales: Record<string, string> = { city: "city", d7: "district", school: "building", bar: "building" };
   const sense = { depth: (id: string) => tree[id]?.length ?? 1, under: (id: string, top: string) => id !== top && (tree[id] ?? []).includes(top), scale: (id: string) => scales[id] ?? null, above: (id: string) => tree[id]?.at(-2) ?? null };

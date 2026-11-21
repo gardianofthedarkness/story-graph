@@ -189,9 +189,6 @@ test("offline preparation isolates equal local block IDs, is idempotent and neve
   assert.equal(second.modelCalls, 0);
   assert.equal((await libraryPrepare(library, sources[0].id)).status, "already_prepared");
   assert.notEqual(first.workspace, second.workspace);
-  const { parseJob } = await import(pathToFileURL(join(process.cwd(), "tools/pi-review/job.mjs")).href);
-  const job = parseJob({ volumes: [first, second].map((entry, index) => ({ id: index + 1, input: entry.input, workspace: entry.workspace })) }, library);
-  assert.equal(job.volumes.length, 2);
   for (const prepared of [first, second]) {
     assert.deepEqual(await readdir(join(prepared.workspace, "changesets")), []);
     assert.equal(await readFile(join(prepared.workspace, "ontology", "entities.jsonl"), "utf8"), "");

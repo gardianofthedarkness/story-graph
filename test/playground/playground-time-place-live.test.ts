@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { followTarget, timePlaceEmergence, type TimePlaceProjection } from "../../apps/playground/src/data/timePlace.js";
+import { followTarget, timePlaceEmergence, type TimePlaceProjection } from "../../src/reading/strands-data/timePlace.js";
 
 const projection = (times: { id: string; proposed?: boolean }[], places: { id: string; proposed?: boolean }[]): TimePlaceProjection => ({
   available: times.length > 0, scenes: [], characters: [], names: {},

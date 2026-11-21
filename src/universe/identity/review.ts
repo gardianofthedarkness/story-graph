@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { settleFigures } from "../../characters/figures.js";
+import { castHooks } from "./hooks.js";
 import { join } from "node:path";
 import { BundleStore } from "../../ground/connectors/bundle.js";
 import { buildGraphFromBundle } from "../../ground/connectors/ladybug.js";
@@ -78,7 +78,7 @@ export async function identityAdapter(root: string, universeId: string, packetId
         packet.decisions = [...packet.decisions.filter((entry) => entry.proposalId !== proposal.id), { proposalId: proposal.id, verdict: decision.verdict, reason: decision.reason, at: new Date().toISOString() }];
       }
       await saveCast(scope, cast);
-      await settleFigures(scope, cast).catch(() => undefined);
+      for (const hook of castHooks.afterCastSaved) await hook(scope, cast).catch(() => undefined);
       await saveIdentityPacket(scope, packet);
       if (verified) await buildGraphFromBundle(join(book.workspace, "ontology"), join(book.workspace, "ontology", "graph.lbug")).catch(() => undefined);
       return { verified, held, rejected, deferredProposals: 0, result: { packetId: packet.id, merged: verified, distinct: rejected, held } };

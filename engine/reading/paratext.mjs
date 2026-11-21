@@ -15,7 +15,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { parseArgs } from 'node:util';
-import { storedKeys } from '../volume/credentials.mjs';
+import { storedKeys } from '../credentials.mjs';
 
 const repository = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..'), load = (path) => import(pathToFileURL(join(repository, path)).href);
 export const KINDS = { story: 'the story itself: narration, dialogue or thought of its people', afterword: "an afterword or the author's own note to readers", note: "a translator's, editor's or publisher's note", front: 'front matter: title page, contents, credits, a synopsis or a character list' };
@@ -58,7 +58,7 @@ async function main() {
   if (!novelArg) { console.error('usage: node engine/reading/paratext.mjs <novel-dir> [--reading <data.json>] [--cache <dir>] [--dry]'); process.exit(2); }
   const novel = resolve(novelArg), dataFile = resolve(values.reading ?? join(dirname(novel), 'reading', 'data.json'));
   const data = JSON.parse(await readFile(dataFile, 'utf8')), scenes = data.scenes;
-  const { loadWorkspaceSentences } = await load('dist/src/cli/commands/extract/timeplaceCommands.js');
+  const { loadWorkspaceSentences } = await load('dist/src/reading/text/workspaceSentences.js');
   const text = await loadWorkspaceSentences(novel), line = (id) => text.get(id)?.text ?? '';
   const calls = Math.ceil(scenes.length / BATCH);
   if (values.dry) { console.log(JSON.stringify({ scenes: scenes.length, calls })); return; }

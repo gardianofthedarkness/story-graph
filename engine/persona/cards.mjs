@@ -18,7 +18,7 @@ const clip = (s, n) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
 /** The person's own spoken lines in the books up to the point, spread over them, the later books first. */
 export async function spokenLines(u, person, at, max = 30) {
   const out = [];
-  const { loadWorkspaceSentences } = await load('dist/src/cli/commands/extract/timeplaceCommands.js');
+  const { loadWorkspaceSentences } = await load('dist/src/reading/text/workspaceSentences.js');
   for (const b of [...u.books].reverse()) {
     if (b.offset >= at) continue;
     const members = person.members.filter((m) => m.book === b.book).map((m) => m.entity);

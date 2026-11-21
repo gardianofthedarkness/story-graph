@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.env.*
+*.lbug
+*.lbug.wal
+__pycache__/
+.DS_Store

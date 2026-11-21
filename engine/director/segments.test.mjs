@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { alignCards, scenesAsSegments, segmentPresence, segmentWorld } from './segments.mjs';
+import { alignCards, scenesAsSegments, segmentPresence, segmentWorld } from '../strands/segments.mjs';
 
 const segments = [
   { scene: 's1', first: 'a1', last: 'a3', sentences: ['a1', 'a2', 'a3'], type: 'routine', distribution: { routine: 1 } },
@@ -64,7 +64,7 @@ test('a unit the reading typed whole keeps its own kind over the blocks', () => 
 });
 
 test('the narration order complies with the stranding: nothing continues, enters from or goes back on its strand before it is played', async () => {
-  const { storyOrderProblems } = await import('./segments.mjs');
+  const { storyOrderProblems } = await import('../strands/segments.mjs');
   const script = { scenes: [{ id: 'a', clock: [0, 1] }, { id: 'b', clock: [1, 2] }, { id: 'c', clock: [0.5, 1] }] };
   const fine = { scenes: [{ id: 'a', fork: 'a' }, { id: 'b', fork: 'a', continues: 'a', entries: [{ person: 'p', from: 'a' }] }, { id: 'c', fork: 'c' }] };
   assert.deepEqual(storyOrderProblems(script, fine), [], 'c is earlier in story time, but on its own strand');

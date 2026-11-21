@@ -11,10 +11,10 @@
  * carried from the scene before), its chapter, a flashback (`clock: null`), and its node on the time tree (`at`: its day
  * and part of the day, and whether the scene states it or inherits it). v1 compares only a scene's own stated times.
  */
-import { storyStrands, type StoryStrands } from "../../apps/playground/src/data/storyStrands.js";
-import type { StoryPlace, StoryScene, StoryTime, TimePlaceProjection } from "../../apps/playground/src/data/timePlace.js";
-import { forkTimeline, type Fork, type ForkTimeline, type Handoff } from "../play/stage/environment.js";
-import { rankOf } from "../world/rules/places.js";
+import { storyStrands, type StoryStrands } from "./strands-data/storyStrands.js";
+import type { StoryPlace, StoryScene, StoryTime, TimePlaceProjection } from "./strands-data/timePlace.js";
+import { forkTimeline, type Fork, type ForkTimeline, type Handoff } from "./stage/environment.js";
+import { rankOf } from "../rules/places.js";
 import type { ReadingScript, ScriptPlace, ScriptScene } from "./script.js";
 
 /** A clock time as v1's part of the day (its slots: late night to night). */

@@ -81,7 +81,7 @@ export async function read(novelDir, outDir, { blocks: range = null, lister: lis
   // captions (tools/album-portraits, local; skipped and said so when its Python packages are not installed).
   let album = null;
   if (epub) {
-    const { readingAlbum } = await load('dist/src/reading/album/inReading.js'), { cropper } = await load('dist/src/cli/commands/extract/portraitCommands.js');
+    const { readingAlbum } = await load('dist/src/reading/album/inReading.js'), { cropper } = await load('dist/src/reading/album/cropper.js');
     const people = entities.filter(entity => entity.category === 'person' && /^char_/.test(entity.id)).map(entity => ({ id: entity.id, names: [...entity.proper, ...entity.names.filter(name => !entity.proper.includes(name))] }));
     album = await readingAlbum(v2, [...text].map(([id, sentence]) => ({ id, text: sentence })), resolve(epub), people);
     // The people each plate page of the introduction names (front.ts): a face left over on a page whose others the captions

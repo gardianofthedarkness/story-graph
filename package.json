@@ -1,0 +1,32 @@
+{
+  "name": "story-graph",
+  "version": "0.1.0",
+  "description": "A knowledge system that teaches an agent to act as a character from a novel series: the books read into a story graph, one cast across volumes, each character's own memories, their cards, and a mind that answers as them (web, Discord, QQ).",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    "./*": "./*"
+  },
+  "files": [
+    "dist/src",
+    "engine",
+    "tools/album-portraits",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test \"dist/test/**/*.test.js\"",
+    "engine:test": "npm run build && node --test \"engine/**/*.test.mjs\""
+  },
+  "dependencies": {
+    "@ladybugdb/core": "^0.21.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  }
+}

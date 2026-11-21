@@ -13,7 +13,7 @@
  * The API key is used only for the Authorization header. It is never
  * logged, printed, or included in error messages.
  */
-import { loadConfig } from "../../cli/config.js";
+import { loadConfig } from "../config.js";
 import type { WorkModel } from "./llm.js";
 
 export interface WorkModelUsage {

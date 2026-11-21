@@ -44,7 +44,8 @@ export interface StoryScene {
   book?: number;
   continuityId?: string | null;
 }
-import type { ArchitectureKind } from "./placeArchitecture.js";
+/** A building's kind as a world engine names it (its architecture shortlist); the reading only carries it. */
+type ArchitectureKind = string;
 
 export interface StoryPlace {
   id: string; label: string; sceneIds: string[]; statedScenes: number; characterIds: string[];

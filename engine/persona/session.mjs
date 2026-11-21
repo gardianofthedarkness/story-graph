@@ -8,7 +8,7 @@ import { appendFile, mkdir } from 'node:fs/promises';
 import { join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { randomBytes } from 'node:crypto';
-import { storedKeys } from '../volume/credentials.mjs';
+import { storedKeys } from '../credentials.mjs';
 import { universeGraph, storyPoint, storyDay, findPerson, TIME_WEIGHTS } from '../memory/universe.mjs';
 import { characterCard, presentCard, cardText, presentText } from './cards.mjs';
 import { createMind } from './mind.mjs';

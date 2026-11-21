@@ -1,4 +1,4 @@
-import { scaleOfName } from "../../play/stage/scale.js";
+import { scaleOfName } from "../reading/stage/scale.js";
 
 /**
  * What the code rules need to know of a language (docs/v3/design.html#world-model §3; src/world/rules/index.ts): the words and marks

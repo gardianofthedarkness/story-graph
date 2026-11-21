@@ -4,7 +4,7 @@
 // the reading had scenes and, beside them, segments cut a second time (M14), played as scene~part with the scene as their
 // parent; that split is gone. Kept from it: the cards aligned to the units, presence by physics, and the gate reading each
 // unit's kind. Pure: the reading, the world script and the spawn plan in; the views the director plays out.
-import { corroborateCredits } from '../../dist/src/world/rules/presence.js';
+import { corroborateCredits } from '../../dist/src/rules/presence.js';
 
 /**
  * The cards aligned to the segments (the user, 2026-11-03: "aligned"): a card that runs across a segment's boundary (a

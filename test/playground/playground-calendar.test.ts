@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { CALENDAR_DAY, calendarDays, calendarTimeLabel, type CalendarView, type CalendarViewEntry } from "../../apps/playground/src/data/timePlace.js";
+import { CALENDAR_DAY, calendarDays, calendarTimeLabel, type CalendarView, type CalendarViewEntry } from "../../src/reading/strands-data/timePlace.js";
 
 const day = (month: number, date: number) => ((1 * 12 + (month - 1)) * 31 + (date - 1)) * CALENDAR_DAY;
 const entry = (id: string, book: number, extra: Partial<CalendarViewEntry>): CalendarViewEntry => ({ id, book, label: id, year: 1, month: 12, day: 24, time: null, span: { start: day(12, 24), end: day(12, 24) + CALENDAR_DAY }, placed: "stated", flashback: false, scenes: 1, ...extra });

@@ -4,7 +4,7 @@
 // people the text only describes (slots) are strong.
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { corroborateCredits, type CreditCard, type CreditRole } from "../../src/world/rules/presence.js";
+import { corroborateCredits, type CreditCard, type CreditRole } from "../../src/rules/presence.js";
 
 const units = [
   { id: "u1", sentences: ["a1", "a2"] },

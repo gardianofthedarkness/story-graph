@@ -10,8 +10,8 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
 import { parseArgs } from 'node:util';
-import { strandBuilder } from '../director/strand-builder.mjs';
-import { segmentWorld, strandsFile } from '../director/segments.mjs';
+import { strandBuilder } from '../strands/strand-builder.mjs';
+import { segmentWorld, strandsFile } from '../strands/segments.mjs';
 const { values, positionals: [novelDir] } = parseArgs({ allowPositionals: true, options: { reading: { type: 'string' }, time: { type: 'string' }, dry: { type: 'boolean' } } });
 if (!novelDir) { console.error('usage: node engine/reading/strands.mjs <novel-dir> [--reading <data.json>] [--time <time.yaml>] [--dry]'); process.exit(2); }
 

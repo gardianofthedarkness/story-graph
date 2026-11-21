@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { askStrandQuestions, planStrandQuestions, scenePassage, storyStrands, strandProjection } from "../../src/reading/v1/timeplace/strandQuestions.js";
-import type { StoryScene, TimePlaceProjection } from "../../apps/playground/src/data/timePlace.js";
+import type { StoryScene, TimePlaceProjection } from "../../src/reading/strands-data/timePlace.js";
 
 // Invented chapter: Ming and Lan part at the station; the story cuts between
 // Ming at the port and Lan at the hill. Scenes m2 and l2 name nobody, so they

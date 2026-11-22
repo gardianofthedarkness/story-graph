@@ -54,8 +54,11 @@ Use only what the material shows; where it does not say, say what is most likely
 Answer as JSON: {"where", "when", "with": [], "justHappened": "three to five sentences, the last events as they lived them",
 "onMind": [], "body": "how they are physically", "mood"}`;
 
-async function cached(u, name, make) {
-  const dir = join(u.library, 'universe', 'cards'), file = join(dir, `${name}.json`);
+// A card is kept by person and point; a point within a book (vol-2:45) is written vol-2~45, since ":" in a file name is a
+// stream on Windows, not a name. Mock models never read or write the kept cards.
+async function cached(u, name, make, keep = true) {
+  if (!keep) return make();
+  const dir = join(u.library, 'universe', 'cards'), file = join(dir, `${name.replace(/[:\/*?"<>|]/g, '~')}.json`);
   if (existsSync(file)) return JSON.parse(await readFile(file, 'utf8'));
   const card = await make();
   await mkdir(dir, { recursive: true });
@@ -78,7 +81,7 @@ export async function characterCard(u, personId, at, point, generate) {
       `Lines they speak in the books:\n${(await spokenLines(u, person, at)).map((l) => `- ${l}`).join('\n') || '(none credited)'}`,
     ].join('\n\n');
     return { personId, point, made: new Date().toISOString(), ...JSON.parse(await generate({ system: CHARACTER_SYSTEM, prompt })) };
-  });
+  }, !generate.mock);
 }
 
 /** The present card: where the person is at a story order. */
@@ -96,7 +99,7 @@ export async function presentCard(u, personId, at, point, generate, seen = '') {
       `Their last memories before this moment, in order (their own view):\n${mems.map((m) => `- ${clip(m.summaryEn, 140)}`).join('\n')}`,
     ].filter(Boolean).join('\n\n');
     return { personId, point, made: new Date().toISOString(), ...JSON.parse(await generate({ system: PRESENT_SYSTEM, prompt })) };
-  });
+  }, !generate.mock);
 }
 
 /** A card as the few lines a prompt carries. */

@@ -37,7 +37,8 @@ async function modelsOf(mock) {
       decide: async (_s, qs) => qs.map((q) => ({ key: q.key, value: q.primitive === 'noul' ? 0.6 : q.options[0], confidence: 0.7 })),
       // A mock that looks, then sends what it wanted to do.
       act: async ({ prompt }) => JSON.stringify(/No steps yet/.test(prompt) ? { tool: 'look', args: {} } : { tool: 'send', args: { text: `(mock ${++n}) ${prompt.split('\n')[0]}` } }),
-      generate: async () => JSON.stringify({ name: 'mock', who: 'a mock person', where: 'somewhere', when: 'now', justHappened: 'nothing' }),
+      // Marked, so the cards it makes are never kept (cards.mjs).
+      generate: Object.assign(async () => JSON.stringify({ name: 'mock', who: 'a mock person', where: 'somewhere', when: 'now', justHappened: 'nothing' }), { mock: true }),
     };
   }
   const env = { JEV_MODEL: 'jev-1.14.0', ...process.env, ...storedKeys(process.env) };

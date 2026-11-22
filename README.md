@@ -10,6 +10,29 @@ a small mind that answers as them, remembering only what they could know at that
 
 Nothing here is about one book: every method works for any series, and no word lists are kept.
 
+## Demo
+
+[![Pick a scene on the strand graph and fork a chat from it](docs/demo/fork.jpg)](docs/demo/story-graph-demo.mp4)
+
+**[Watch the demo (1:37)](docs/demo/story-graph-demo.mp4)**: six volumes of one series read as one world, shown in
+[Novel Console](https://github.com/gardianofthedarkness/novel-console). The model replies are live; waits on the models
+are sped up. The book's own text is blurred: nothing of a book is published here.
+
+- **Strands**: who stays together, where they part and meet again. Pick any scene; its card shows when, where and who
+  is there.
+- **Fork a chat** from that scene with anyone in it: they are as they were at that moment, knowing only what they have
+  lived up to it. Talk to them, let time pass (they go on to their next scene in the books), or ask the world itself,
+  which knows where everyone is and what comes next. A chat is its own branch; the books never change.
+- **Cast & places**: everyone and every place of the world across all its books, each person once whatever each volume
+  calls them; buildings the world engine built, from above and in 3D. Chat with anyone as of the end of any book.
+
+| Talking to a character, and asking the world | The cast and the buildings |
+| --- | --- |
+| ![A forked chat: the character answers, time passes, the world agent answers](docs/demo/chat.jpg) | ![Cast and places: a person's books, companions and places](docs/demo/library.jpg) |
+
+The front end's calls are `engine/persona/studio.mjs` (the library, a person, a place, fork, turn, ask), so a chatbot can
+use the same things without the console.
+
 ## What it makes
 
 | Layer | What | Where |
